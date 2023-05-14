@@ -175,7 +175,7 @@ settingsBtn.addEventListener('click', () => {
       const input = item.querySelector('input')
       if (e.target !== input && e.target !== item) {
         productsDisplayList.classList.toggle('show')
-        productsDisplayBtn.classList.add('show')
+        productsDisplayBtn.classList.toggle('show')
       } else return
     })
   })
