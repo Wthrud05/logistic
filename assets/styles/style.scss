@@ -326,6 +326,10 @@ body {
                     display: none;
                     z-index: 10;
 
+                    @media (max-width: 780px) {
+                      top: 60px;
+                    }
+
                     &.show {
                       display: block;
                     }
@@ -338,6 +342,10 @@ body {
                       padding: 7px 10px;
                       background-color: $white;
                       box-shadow: 0 0 3px 0 #000, inset 0 1px 2px 0 rgba(255, 255, 255, 0.5);
+
+                      @media (max-width: 780px) {
+                        margin: 0;
+                      }
                       
                       li {
                         font-size: 14px;

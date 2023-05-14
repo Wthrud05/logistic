@@ -11,6 +11,8 @@ import {
 
 const tableBody = document.querySelector('.products_table-body')
 const addProductBtn = document.querySelector('.add_button')
+const settingsBtn = document.querySelector('.products_settings')
+console.log(settingsBtn)
 
 // Начальное состояние
 let products = getFromStorage('products') || []
@@ -86,47 +88,7 @@ const renderProducts = () => {
     e.preventDefault()
   })
 
-  // Функционал для управления состоянием отображения колонок
-
-  const settingsBtn = document.querySelector('.products_settings')
-
-  settingsBtn.addEventListener('click', () => {
-    const productsDisplay = document.querySelector('.products_columns-display')
-    const productsDisplayList = document.querySelector('.products_display-list')
-    const productsDisplayBtn = document.querySelector('.products_display-btn')
-    const listItems = productsDisplayList.querySelectorAll('li')
-
-    if (productsDisplayList.classList.contains('show')) {
-      productsDisplayList.classList.toggle('show')
-      productsDisplayBtn.classList.toggle('show')
-    }
-
-    productsDisplay.classList.toggle('show')
-
-    productsDisplay.addEventListener('click', (e) => {
-      listItems.forEach((item) => {
-        const input = item.querySelector('input')
-        if (e.target !== input && e.target !== item) {
-          productsDisplayList.classList.toggle('show')
-          productsDisplayBtn.classList.add('show')
-        } else return
-      })
-    })
-
-    listItems.forEach((item) => {
-      const input = item.querySelector('input')
-      input.addEventListener('click', () => {
-        const column = document.querySelectorAll(`#${input.name}`)
-        column.forEach((c) => {
-          if (input.checked) {
-            c.classList.remove('hide')
-          } else {
-            c.classList.add('hide')
-          }
-        })
-      })
-    })
-  })
+  // Функционал выбора продукта из списка
 
   const unitNameCell = tableBody.querySelectorAll('.unit_name')
   unitNameCell.forEach((unit) => {
@@ -191,6 +153,47 @@ const renderProducts = () => {
     })
   }
 }
+
+// Функционал для управления состоянием отображения колонок
+
+settingsBtn.addEventListener('click', () => {
+  console.log(1)
+  const productsDisplay = document.querySelector('.products_columns-display')
+  const productsDisplayList = document.querySelector('.products_display-list')
+  const productsDisplayBtn = document.querySelector('.products_display-btn')
+  const listItems = productsDisplayList.querySelectorAll('li')
+
+  if (productsDisplayList.classList.contains('show')) {
+    productsDisplayList.classList.toggle('show')
+    productsDisplayBtn.classList.toggle('show')
+  }
+
+  productsDisplay.classList.toggle('show')
+
+  productsDisplay.addEventListener('click', (e) => {
+    listItems.forEach((item) => {
+      const input = item.querySelector('input')
+      if (e.target !== input && e.target !== item) {
+        productsDisplayList.classList.toggle('show')
+        productsDisplayBtn.classList.add('show')
+      } else return
+    })
+  })
+
+  listItems.forEach((item) => {
+    const input = item.querySelector('input')
+    input.addEventListener('click', () => {
+      const column = document.querySelectorAll(`#${input.name}`)
+      column.forEach((c) => {
+        if (input.checked) {
+          c.classList.remove('hide')
+        } else {
+          c.classList.add('hide')
+        }
+      })
+    })
+  })
+})
 
 // Функция удаления продукта
 
