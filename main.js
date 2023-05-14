@@ -11,7 +11,6 @@ import {
 
 const tableBody = document.querySelector('.products_table-body')
 const addProductBtn = document.querySelector('.add_button')
-const settingsBtn = document.querySelector('.products_settings')
 
 // Начальное состояние
 let products = getFromStorage('products') || []
@@ -88,6 +87,8 @@ const renderProducts = () => {
   })
 
   // Функционал для управления состоянием отображения колонок
+
+  const settingsBtn = document.querySelector('.products_settings')
 
   settingsBtn.addEventListener('click', () => {
     const productsDisplay = document.querySelector('.products_columns-display')
